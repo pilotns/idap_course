@@ -8,8 +8,10 @@
 
 #include <stdio.h>
 
+#include "AMPHomeTaskTests.h"
+
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    printf("Hello, World!\n");
+    AMPHomeTaskTest();
+
     return 0;
 }

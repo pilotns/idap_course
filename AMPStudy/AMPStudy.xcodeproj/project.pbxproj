@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8A0EE0F01E99713700326E3D /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A0EE0EF1E99713700326E3D /* main.c */; };
+		8A0EE0FA1E99724300326E3D /* AMPFirstHomeTask.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A0EE0F81E99724300326E3D /* AMPFirstHomeTask.c */; };
+		8A0EE1011E99916400326E3D /* AMPHomeTaskTests.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A0EE0FF1E99916400326E3D /* AMPHomeTaskTests.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,11 @@
 /* Begin PBXFileReference section */
 		8A0EE0EC1E99713700326E3D /* AMPStudy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AMPStudy; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A0EE0EF1E99713700326E3D /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		8A0EE0F81E99724300326E3D /* AMPFirstHomeTask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AMPFirstHomeTask.c; sourceTree = "<group>"; };
+		8A0EE0F91E99724300326E3D /* AMPFirstHomeTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPFirstHomeTask.h; sourceTree = "<group>"; };
+		8A0EE0FC1E998A1700326E3D /* AMPMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPMacros.h; sourceTree = "<group>"; };
+		8A0EE0FF1E99916400326E3D /* AMPHomeTaskTests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AMPHomeTaskTests.c; sourceTree = "<group>"; };
+		8A0EE1001E99916400326E3D /* AMPHomeTaskTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPHomeTaskTests.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +73,29 @@
 		8A0EE0F61E99715000326E3D /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				8A0EE0FE1E99913E00326E3D /* Tests */,
+				8A0EE0F71E99722500326E3D /* AMPFirstHomeTask */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		8A0EE0F71E99722500326E3D /* AMPFirstHomeTask */ = {
+			isa = PBXGroup;
+			children = (
+				8A0EE0F81E99724300326E3D /* AMPFirstHomeTask.c */,
+				8A0EE0F91E99724300326E3D /* AMPFirstHomeTask.h */,
+				8A0EE0FC1E998A1700326E3D /* AMPMacros.h */,
+			);
+			path = AMPFirstHomeTask;
+			sourceTree = "<group>";
+		};
+		8A0EE0FE1E99913E00326E3D /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				8A0EE0FF1E99916400326E3D /* AMPHomeTaskTests.c */,
+				8A0EE1001E99916400326E3D /* AMPHomeTaskTests.h */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -129,6 +157,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A0EE0F01E99713700326E3D /* main.c in Sources */,
+				8A0EE0FA1E99724300326E3D /* AMPFirstHomeTask.c in Sources */,
+				8A0EE1011E99916400326E3D /* AMPHomeTaskTests.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
