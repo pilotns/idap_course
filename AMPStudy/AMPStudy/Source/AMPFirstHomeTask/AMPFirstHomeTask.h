@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 
+void AMPPrintString(const char *string);
 void AMPPrintStringWithValue(int value);
 void AMPPrintStringWithIterationCount(int count);
 

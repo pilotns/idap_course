@@ -10,17 +10,22 @@
 
 static const char * const AMPMama = "mama";
 static const char * const AMPPapa = "papa";
+static const char * const AMPNewLine = "\n";
+
+void AMPPrintString(const char *string) {
+    printf("%s", string);
+}
 
 void AMPPrintStringWithValue(int value) {
-    if (0 == (value % 15)) {
-        printf("%s%s\n", AMPMama, AMPPapa);
-    } else if (0 == (value % 5)) {
-        printf("%s\n", AMPPapa);
-    } else if (0 == (value % 3)) {
-        printf("%s\n", AMPMama);
-    } else {
-        printf("\n");
+    if (0 == (value % 3)) {
+        AMPPrintString(AMPMama);
     }
+    
+    if (0 == (value % 5)) {
+        AMPPrintString(AMPPapa);
+    }
+    
+    AMPPrintString(AMPNewLine);
 }
 
 void AMPPrintStringWithIterationCount(int count) {
