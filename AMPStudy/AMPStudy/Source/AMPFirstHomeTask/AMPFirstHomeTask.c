@@ -22,15 +22,13 @@ void AMPPrintString(const char *string) {
     printf("%s", string);
 }
 
-void AMPPrintStringWithValue(int value, AMPShouldPrintString shouldPrint) {
+void AMPPrintStringWithValueAndFunction(int value, AMPShouldPrintString shouldPrint) {
     if (shouldPrint(value, 3)) {
         AMPPrintString(AMPMama);
-        
     }
     
     if (shouldPrint(value, 5)) {
         AMPPrintString(AMPPapa);
-        
     }
     
     AMPPrintString(AMPNewLine);
@@ -45,6 +43,6 @@ void AMPPrintStringWithIterationCount(int count) {
         }
         
         printf("iteration - #%d - ", iterator);
-        AMPPrintStringWithValue(iterator, AMPShouldPrintStringWithValueAndDivisor);
+        AMPPrintStringWithValueAndFunction(iterator, AMPShouldPrintStringWithValueAndDivisor);
     }
 }
