@@ -8,8 +8,13 @@
 
 #include <stdio.h>
 
+#include "AMPFirstHomeTask.h"
+
+static const int AMPDefaultIterationCount = 1000;
+
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    printf("Hello, World!\n");
+
+    AMPPrintStringWithIterationCount(AMPDefaultIterationCount);
+
     return 0;
 }
