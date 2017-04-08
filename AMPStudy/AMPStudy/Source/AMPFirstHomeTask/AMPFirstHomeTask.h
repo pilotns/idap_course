@@ -10,9 +10,13 @@
 #define AMPFirstHomeTask_h
 
 #include <stdio.h>
+#include <stdbool.h>
 
+typedef bool (*AMPShouldPrintString)(int, int);
+
+bool AMPShouldPrint(int value, int divisor);
 void AMPPrintString(const char *string);
-void AMPPrintStringWithValue(int value);
+void AMPPrintStringWithValue(int value, bool (*shouldPrint)(int, int));
 void AMPPrintStringWithIterationCount(int count);
 
 #endif /* AMPFirstHomeTask_h */
