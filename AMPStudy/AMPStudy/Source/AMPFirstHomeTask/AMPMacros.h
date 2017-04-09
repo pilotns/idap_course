@@ -20,4 +20,7 @@
 #define AMPCallOutputMacroWithType(type, value) \
     AMPOutput_##type(value);
 
+#define AMPPrintOffsetof(type, value) \
+    printf(#value " offset - %lu\n", offsetof(type, value))
+
 #endif /* AMPMacros_h */

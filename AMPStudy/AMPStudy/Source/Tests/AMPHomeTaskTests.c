@@ -12,6 +12,7 @@
 
 #include "AMPFirstHomeTask.h"
 #include "AMPMacros.h"
+#include "AMPStructurePacking.h"
 
 static const int AMPDefaultIterationCount = 1000;
 
@@ -29,7 +30,13 @@ void AMPMacrosTest(void) {
     AMPOutput_double(M_PI);
 }
 
+void AMPStructurePackingTest(void) {
+    AMPPrintMembersOffset();
+    AMPPrintSize();
+}
+
 void AMPHomeTaskTest(void) {
     AMPPrintStringWithIterationCount(AMPDefaultIterationCount);
     AMPMacrosTest();
+    AMPStructurePackingTest();
 }
