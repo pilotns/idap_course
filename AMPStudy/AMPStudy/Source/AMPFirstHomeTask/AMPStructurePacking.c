@@ -15,38 +15,40 @@
 
 
 struct AMPStructurePacking {
-    short       shortValue1;
-    long long   longLongValue;
-    bool        boolValue1;
-    int         intValue;
-    bool        boolValue2;
-    float       floatValue;
-    bool        boolValue3;
-    bool        boolValue4;
-    short       shortValue2;
-    bool        boolValue5;
-    double      doubleValue;
-    bool        boolValue6;
-    short       shortValue3;
     char        *string;
+    double      doubleValue;
+    long long   longLongValue;
+    int         intValue;
+    float       floatValue;
+    short       shortValue1;
+    short       shortValue2;
+    short       shortValue3;
+    union {
+        bool        boolValue1;
+        bool        boolValue2;
+        bool        boolValue3;
+        bool        boolValue4;
+        bool        boolValue5;
+        bool        boolValue6;
+    };
 };
 
 
 void AMPPrintMembersOffset(void) {
+    AMPPrintOffsetof(AMPStructurePacking, string);
+    AMPPrintOffsetof(AMPStructurePacking, doubleValue);
+    AMPPrintOffsetof(AMPStructurePacking, longLongValue);
+    AMPPrintOffsetof(AMPStructurePacking, intValue);
+    AMPPrintOffsetof(AMPStructurePacking, floatValue);
+    AMPPrintOffsetof(AMPStructurePacking, shortValue1);
+    AMPPrintOffsetof(AMPStructurePacking, shortValue2);
+    AMPPrintOffsetof(AMPStructurePacking, shortValue3);
     AMPPrintOffsetof(AMPStructurePacking, boolValue1);
     AMPPrintOffsetof(AMPStructurePacking, boolValue2);
     AMPPrintOffsetof(AMPStructurePacking, boolValue3);
     AMPPrintOffsetof(AMPStructurePacking, boolValue4);
     AMPPrintOffsetof(AMPStructurePacking, boolValue5);
     AMPPrintOffsetof(AMPStructurePacking, boolValue6);
-    AMPPrintOffsetof(AMPStructurePacking, floatValue);
-    AMPPrintOffsetof(AMPStructurePacking, intValue);
-    AMPPrintOffsetof(AMPStructurePacking, longLongValue);
-    AMPPrintOffsetof(AMPStructurePacking, shortValue1);
-    AMPPrintOffsetof(AMPStructurePacking, shortValue2);
-    AMPPrintOffsetof(AMPStructurePacking, shortValue3);
-    AMPPrintOffsetof(AMPStructurePacking, doubleValue);
-    AMPPrintOffsetof(AMPStructurePacking, string);
 }
 
 void AMPPrintSize() {
