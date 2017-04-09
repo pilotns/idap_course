@@ -11,6 +11,7 @@
 		8A0EE0FA1E99724300326E3D /* AMPFirstHomeTask.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A0EE0F81E99724300326E3D /* AMPFirstHomeTask.c */; };
 		8A0EE1011E99916400326E3D /* AMPHomeTaskTests.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A0EE0FF1E99916400326E3D /* AMPHomeTaskTests.c */; };
 		8A0EE1041E9A655700326E3D /* AMPStructurePacking.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A0EE1021E9A655700326E3D /* AMPStructurePacking.c */; };
+		8A8A485A1E9A930000766C20 /* AMPBitwiseRepresentation.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A8A48581E9A930000766C20 /* AMPBitwiseRepresentation.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,6 +36,8 @@
 		8A0EE1001E99916400326E3D /* AMPHomeTaskTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPHomeTaskTests.h; sourceTree = "<group>"; };
 		8A0EE1021E9A655700326E3D /* AMPStructurePacking.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AMPStructurePacking.c; sourceTree = "<group>"; };
 		8A0EE1031E9A655700326E3D /* AMPStructurePacking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPStructurePacking.h; sourceTree = "<group>"; };
+		8A8A48581E9A930000766C20 /* AMPBitwiseRepresentation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AMPBitwiseRepresentation.c; sourceTree = "<group>"; };
+		8A8A48591E9A930000766C20 /* AMPBitwiseRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPBitwiseRepresentation.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,8 @@
 				8A0EE0FC1E998A1700326E3D /* AMPMacros.h */,
 				8A0EE1021E9A655700326E3D /* AMPStructurePacking.c */,
 				8A0EE1031E9A655700326E3D /* AMPStructurePacking.h */,
+				8A8A48581E9A930000766C20 /* AMPBitwiseRepresentation.c */,
+				8A8A48591E9A930000766C20 /* AMPBitwiseRepresentation.h */,
 			);
 			path = AMPFirstHomeTask;
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A8A485A1E9A930000766C20 /* AMPBitwiseRepresentation.c in Sources */,
 				8A0EE0F01E99713700326E3D /* main.c in Sources */,
 				8A0EE0FA1E99724300326E3D /* AMPFirstHomeTask.c in Sources */,
 				8A0EE1041E9A655700326E3D /* AMPStructurePacking.c in Sources */,

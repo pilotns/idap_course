@@ -23,4 +23,7 @@
 #define AMPPrintOffsetof(type, value) \
     printf(#value " offset - %lu\n", offsetof(type, value))
 
+static const uint16_t value = 1;
+#define AMPIsBigendian() (*(char *)&value == 1)
+
 #endif /* AMPMacros_h */

@@ -13,6 +13,7 @@
 #include "AMPFirstHomeTask.h"
 #include "AMPMacros.h"
 #include "AMPStructurePacking.h"
+#include "AMPBitwiseRepresentation.h"
 
 static const int AMPDefaultIterationCount = 1000;
 
@@ -35,8 +36,23 @@ void AMPStructurePackingTest(void) {
     AMPPrintSize();
 }
 
+void AMPBitwiseRepresentationTest(void) {
+    AMPStructurePacking structure = {0};
+    
+    structure.boolValue1 = 1;
+    structure.boolValue2 = 1;
+    structure.boolValue3 = 1;
+    structure.boolValue4 = 1;
+    structure.boolValue5 = 1;
+    structure.boolValue6 = 1;
+    
+    AMPBitviseRepresentationPrintMemoryWithSize(&structure, sizeof(structure), AMPIsBigendian());
+}
+
 void AMPHomeTaskTest(void) {
     AMPPrintStringWithIterationCount(AMPDefaultIterationCount);
     AMPMacrosTest();
     AMPStructurePackingTest();
+    printf("---------------------------------------------------\n");
+    AMPBitwiseRepresentationTest();
 }
