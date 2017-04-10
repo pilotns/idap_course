@@ -24,11 +24,11 @@ AMPOutputWithTypeAndFormatter(double, %.15lf)
 AMPOutputWithTypeAndFormatter(long, %ld)
 
 void AMPMacrosTest(void) {
-    AMPOutput_char('c');
-    AMPOutput_int(10);
-    AMPOutput_long(UINT32_MAX);
-    AMPOutput_float(1.5);
-    AMPOutput_double(M_PI);
+    AMPCallOutputMacroWithType(char, 'c');
+    AMPCallOutputMacroWithType(int, 10);
+    AMPCallOutputMacroWithType(long, UINT32_MAX);
+    AMPCallOutputMacroWithType(float, M_PI);
+    AMPCallOutputMacroWithType(double, M_PI);
 }
 
 void AMPStructurePackingTest(void) {
@@ -50,9 +50,8 @@ void AMPBitwiseRepresentationTest(void) {
 }
 
 void AMPHomeTaskTest(void) {
-    AMPPrintStringWithIterationCount(AMPDefaultIterationCount);
-    AMPMacrosTest();
-    AMPStructurePackingTest();
-    printf("---------------------------------------------------\n");
-    AMPBitwiseRepresentationTest();
+    AMPCallTest(AMPPrintStringWithIterationCount, AMPDefaultIterationCount);
+    AMPCallTest(AMPMacrosTest, AMPEmptyParameter);
+    AMPCallTest(AMPStructurePackingTest, AMPEmptyParameter);
+    AMPCallTest(AMPBitwiseRepresentationTest, AMPEmptyParameter);
 }
