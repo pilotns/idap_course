@@ -12,7 +12,6 @@
 
 #include "AMPMacros.h"
 
-
 void AMPPrintMembersOffset(void) {
     AMPPrintOffsetof(AMPStructurePacking, string);
     AMPPrintOffsetof(AMPStructurePacking, doubleValue);
@@ -22,12 +21,7 @@ void AMPPrintMembersOffset(void) {
     AMPPrintOffsetof(AMPStructurePacking, shortValue1);
     AMPPrintOffsetof(AMPStructurePacking, shortValue2);
     AMPPrintOffsetof(AMPStructurePacking, shortValue3);
-//    AMPPrintOffsetof(AMPStructurePacking, boolValue1);
-//    AMPPrintOffsetof(AMPStructurePacking, boolValue2);
-//    AMPPrintOffsetof(AMPStructurePacking, boolValue3);
-//    AMPPrintOffsetof(AMPStructurePacking, boolValue4);
-//    AMPPrintOffsetof(AMPStructurePacking, boolValue5);
-//    AMPPrintOffsetof(AMPStructurePacking, boolValue6);
+    AMPPrintOffsetof(AMPStructurePacking, bitfields);
 }
 
 void AMPPrintSize() {

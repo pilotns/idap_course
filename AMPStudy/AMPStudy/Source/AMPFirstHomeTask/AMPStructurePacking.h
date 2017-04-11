@@ -23,22 +23,17 @@ struct AMPStructurePacking {
     short       shortValue1;
     short       shortValue2;
     short       shortValue3;
-    struct {
-        bool        boolValue1: 1;
-        bool        boolValue2: 1;
-        bool        boolValue3: 1;
-        bool        boolValue4: 1;
-        bool        boolValue5: 1;
-        bool        boolValue6: 1;
+    union {
+        struct {
+            bool        boolValue1: 1;
+            bool        boolValue2: 1;
+            bool        boolValue3: 1;
+            bool        boolValue4: 1;
+            bool        boolValue5: 1;
+            bool        boolValue6: 1;
+        };
+        unsigned char bitfields;
     };
-//    union {
-//        bool        boolValue1;
-//        bool        boolValue2;
-//        bool        boolValue3;
-//        bool        boolValue4;
-//        bool        boolValue5;
-//        bool        boolValue6;
-//    };
 };
 
 void AMPPrintMembersOffset(void);
