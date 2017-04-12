@@ -46,7 +46,7 @@ void AMPBitwiseRepresentationTest(void) {
     structure.boolValue2 = 0;
     structure.boolValue3 = 0;
     
-    AMPBitviseRepresentationPrintMemoryWithSize(&structure, sizeof(structure), AMPIsBigendian());
+    AMPBitwiseRepresentationPrintMemoryWithSize(&structure, sizeof(structure), AMPIsBigendian());
 }
 
 void AMPHomeTaskTest(void) {

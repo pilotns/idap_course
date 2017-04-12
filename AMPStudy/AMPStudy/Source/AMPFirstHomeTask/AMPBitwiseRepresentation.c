@@ -15,27 +15,24 @@ void AMPBitwiseRepresentationPrintByte(char *byte, bool isBigendian);
 void AMPBitwiseRepresentationPrintMemoryWithSize(void *memory, size_t size, bool isBigendian) {
     int iterator = 0;
     while (iterator < size) {
-        if (isBigendian) {
-            AMPBitwiseRepresentationPrintByte(memory + (size-iterator-1), isBigendian);
-        } else {
-            AMPBitwiseRepresentationPrintByte(memory++, isBigendian);
-        }
+        size_t position = isBigendian ? (size - iterator - 1) : iterator;
+        
+        AMPBitwiseRepresentationPrintByte(memory + position, isBigendian);
         iterator++;
+        
     }
+    
     printf("\n");
 }
 
 void AMPBitwiseRepresentationPrintByte(char *byte, bool isBigendian) {
-    
+
     for (int iterator = 0; iterator < AMPBitsPerByte; iterator++) {
         char b = *byte;
-        if (isBigendian) {
-            b >>= (AMPBitsPerByte - iterator - 1);
-        } else {
-            b >>= iterator;
-        }
+        int shift = isBigendian ? (AMPBitsPerByte - iterator - 1) : iterator;
         
-        printf("%d", b & 1 ? 1 : 0);
+        printf("%d", (b >> shift) & 1 ? 1 : 0);
     }
+    
     printf(" ");
 }
