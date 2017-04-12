@@ -12,6 +12,6 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-void AMPBitviseRepresentationPrintMemoryWithSize(void *memory, size_t size, bool isBigendian);
+void AMPBitwiseRepresentationPrintMemoryWithSize(void *memory, size_t size, bool isBigendian);
 
 #endif /* AMPBitwiseRepresentation_h */

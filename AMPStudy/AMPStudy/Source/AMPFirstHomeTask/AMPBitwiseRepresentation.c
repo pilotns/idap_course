@@ -12,7 +12,7 @@ static const int AMPBitsPerByte = 8;
 
 void AMPBitwiseRepresentationPrintByte(char *byte, bool isBigendian);
 
-void AMPBitviseRepresentationPrintMemoryWithSize(void *memory, size_t size, bool isBigendian) {
+void AMPBitwiseRepresentationPrintMemoryWithSize(void *memory, size_t size, bool isBigendian) {
     int iterator = 0;
     while (iterator < size) {
         if (isBigendian) {
