@@ -12,24 +12,47 @@
 
 #include "AMPFirstHomeTask.h"
 #include "AMPMacros.h"
+#include "AMPStructurePacking.h"
+#include "AMPBitwiseRepresentation.h"
+#include "AMPArrayTest.h"
 
 static const int AMPDefaultIterationCount = 1000;
 
-AMPOutputWithTypeAndFormatter(int, %d)
-AMPOutputWithTypeAndFormatter(char, %c)
-AMPOutputWithTypeAndFormatter(float, %f)
-AMPOutputWithTypeAndFormatter(double, %.15lf)
-AMPOutputWithTypeAndFormatter(long, %ld)
+AMPOutputWithTypeAndFormatter(int, %d);
+AMPOutputWithTypeAndFormatter(char, %c);
+AMPOutputWithTypeAndFormatter(float, %f);
+AMPOutputWithTypeAndFormatter(double, %.15lf);
+AMPOutputWithTypeAndFormatter(long, %ld);
 
 void AMPMacrosTest(void) {
-    AMPOutput_char('c');
-    AMPOutput_int(10);
-    AMPOutput_long(UINT32_MAX);
-    AMPOutput_float(1.5);
-    AMPOutput_double(M_PI);
+    AMPCallOutputMacroWithType(char, 'c');
+    AMPCallOutputMacroWithType(int, 10);
+    AMPCallOutputMacroWithType(long, UINT32_MAX);
+    AMPCallOutputMacroWithType(float, 1.5);
+    AMPCallOutputMacroWithType(double, M_PI);
+}
+
+void AMPStructurePackingTest(void) {
+    AMPPrintMembersOffset();
+    AMPPrintSize();
+}
+
+void AMPBitwiseRepresentationTest(void) {
+    AMPStructurePacking structure = {0};
+    
+    structure.bitfields = 255;
+    
+    structure.boolValue1 = 0;
+    structure.boolValue2 = 0;
+    structure.boolValue3 = 0;
+    
+    AMPBitviseRepresentationPrintMemoryWithSize(&structure, sizeof(structure), AMPIsBigendian());
 }
 
 void AMPHomeTaskTest(void) {
-    AMPPrintStringWithIterationCount(AMPDefaultIterationCount);
-    AMPMacrosTest();
+    AMPCallTest(AMPPrintStringWithIterationCount, AMPDefaultIterationCount);
+    AMPCallTest(AMPMacrosTest, AMPEmptyParameter);
+    AMPCallTest(AMPStructurePackingTest, AMPEmptyParameter);
+    AMPCallTest(AMPBitwiseRepresentationTest, AMPEmptyParameter);
+    AMPCallTest(AMPArrayTest, AMPEmptyParameter);
 }

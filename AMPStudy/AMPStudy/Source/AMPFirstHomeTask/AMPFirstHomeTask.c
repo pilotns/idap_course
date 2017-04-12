@@ -10,16 +10,14 @@
 
 #include <stdbool.h>
 
+#include "AMPMacros.h"
+
 static const char * const AMPMama = "mama";
 static const char * const AMPPapa = "papa";
 static const char * const AMPNewLine = "\n";
 
 bool AMPShouldPrintStringWithValueAndDivisor(int value, int divisor) {
     return !(value % divisor);
-}
-
-void AMPPrintString(const char *string) {
-    printf("%s", string);
 }
 
 void AMPPrintStringWithValueAndFunction(int value, AMPShouldPrintString shouldPrint) {

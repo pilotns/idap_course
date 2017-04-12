@@ -15,7 +15,6 @@
 typedef bool (*AMPShouldPrintString)(int, int);
 
 bool AMPShouldPrintStringWithValueAndDivisor(int value, int divisor);
-void AMPPrintString(const char *string);
 void AMPPrintStringWithValueAndFunction(int value, bool (*shouldPrint)(int, int));
 void AMPPrintStringWithIterationCount(int count);
 
