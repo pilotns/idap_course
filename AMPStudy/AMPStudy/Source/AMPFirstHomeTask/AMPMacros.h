@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 
-#define AMPSeparator "---------------------------------------------"
+#define AMPSeparator "---------------------------------------------\n"
 
 #define AMPOutputWithTypeAndFormatter(type, formatter) \
     void AMPOutput_##type(type value) { \
@@ -26,7 +26,7 @@
     printf(#value " offset - %lu\n", offsetof(type, value))
 
 #define AMPPrintString(string) \
-    printf("%s\n", string);
+    printf("%s", string);
 
 
 #define AMPCallTest(test, inputParameter) \
