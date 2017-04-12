@@ -11,26 +11,30 @@
 
 #include <stdio.h>
 
+#define AMPSeparator "---------------------------------------------"
+
 #define AMPOutputWithTypeAndFormatter(type, formatter) \
     void AMPOutput_##type(type value) { \
         printf(#formatter "\n", value); \
     }
 
-
 #define AMPCallOutputMacroWithType(type, value) \
     AMPOutput_##type(value);
+
 
 #define AMPPrintOffsetof(type, value) \
     printf(#value " offset - %lu\n", offsetof(type, value))
 
-#define AMPPrintLine \
-    printf("---------------------------------------------\n");
+#define AMPPrintString(string) \
+    printf("%s\n", string);
+
 
 #define AMPCallTest(test, inputParameter) \
     do { \
         test(inputParameter); \
-        AMPPrintLine \
+        AMPPrintString(AMPSeparator) \
     } while(false)
+
 
 #define AMPEmptyParameter
 
