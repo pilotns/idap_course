@@ -89,14 +89,10 @@ void AMPArrayRemoveObject(AMPArray *array, void *object) {
 }
 
 void AMPArrayRemoveAllObjects(AMPArray *array) {
-    uint64_t currentCount = AMPArrayGetCount(array);
-    
-    if (0 != currentCount && UINT64_MAX != currentCount) {
+    do {
+        AMPArrayRemoveObjectAtIndex(array, 0);
         
-        do {
-            AMPArrayRemoveObjectAtIndex(array, 0);
-        } while(0 != AMPArrayGetCount(array));
-    }
+    } while(0 != AMPArrayGetCount(array));
 }
 
 void AMPArrayRemoveObjectAtIndex(AMPArray *array, uint64_t index) {
@@ -106,12 +102,13 @@ void AMPArrayRemoveObjectAtIndex(AMPArray *array, uint64_t index) {
         void **position = array->storage + index;
         void *object = *position;
         
+        currentCount = currentCount - 1;
+        size_t length = (currentCount - index)*sizeof(void *);
+        memmove(position, position + 1, length);
+        position[currentCount] = NULL;
+        
         AMPArrayDecrementCount(array);
         AMPTestObjectRelease(object);
-        
-        size_t length = (currentCount - index - 1)*sizeof(void *);
-        memmove(position, position + 1, length);
-        position[length] = NULL;
     }
 }
 
@@ -122,7 +119,7 @@ uint64_t AMPArrayIndexOfObject(AMPArray *array, void *object) {
     
     uint64_t currentCount = AMPArrayGetCount(array);
     
-    if (currentCount && UINT64_MAX != currentCount) {
+    if (0 != currentCount && UINT64_MAX != currentCount) {
         for (int iterator = 0; iterator < currentCount; iterator++) {
             void *currentObject = AMPArrayObjectAtIndex(array, iterator);
             
@@ -136,7 +133,7 @@ uint64_t AMPArrayIndexOfObject(AMPArray *array, void *object) {
 }
 
 bool AMPArrayContainsObject(AMPArray *array, void *object) {
-    return UINT64_MAX != AMPArrayIndexOfObject(array, object) ? true : false;
+    return NULL != array && UINT64_MAX != AMPArrayIndexOfObject(array, object);
 }
 
 uint64_t AMPArrayGetCount(AMPArray *array) {
