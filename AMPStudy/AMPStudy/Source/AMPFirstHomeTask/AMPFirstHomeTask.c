@@ -16,30 +16,20 @@ static const char * const AMPMama = "mama";
 static const char * const AMPPapa = "papa";
 static const char * const AMPNewLine = "\n";
 
-bool AMPShouldPrintStringWithValueAndDivisor(int value, int divisor) {
-    return !(value % divisor);
+void AMPShouldPrintStringWithValueAndDivisor(int value, int divisor, const char *string) {
+    if (!(value % divisor)) {
+        AMPPrintString(string);
+    }
 }
 
 void AMPPrintStringWithValueAndFunction(int value, AMPShouldPrintString shouldPrint) {
-    if (shouldPrint(value, 3)) {
-        AMPPrintString(AMPMama);
-    }
-    
-    if (shouldPrint(value, 5)) {
-        AMPPrintString(AMPPapa);
-    }
-    
+    shouldPrint(value, 3, AMPMama);
+    shouldPrint(value, 5, AMPPapa);
     AMPPrintString(AMPNewLine);
 }
 
 void AMPPrintStringWithIterationCount(int count) {
     for (int iterator = 1; iterator < count; iterator++) {
-        if (!AMPShouldPrintStringWithValueAndDivisor(iterator, 3)
-            && !AMPShouldPrintStringWithValueAndDivisor(iterator, 5))
-        {
-            continue;
-        }
-        
         printf("iteration - #%d - ", iterator);
         AMPPrintStringWithValueAndFunction(iterator, AMPShouldPrintStringWithValueAndDivisor);
     }

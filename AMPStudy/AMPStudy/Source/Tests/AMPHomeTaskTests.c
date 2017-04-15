@@ -18,11 +18,11 @@
 
 static const int AMPDefaultIterationCount = 1000;
 
-AMPOutputWithTypeAndFormatter(int, %d);
-AMPOutputWithTypeAndFormatter(char, %c);
-AMPOutputWithTypeAndFormatter(float, %f);
-AMPOutputWithTypeAndFormatter(double, %.15lf);
-AMPOutputWithTypeAndFormatter(long, %ld);
+AMPOutputWithTypeAndFormatter(int, d);
+AMPOutputWithTypeAndFormatter(char, c);
+AMPOutputWithTypeAndFormatter(float, f);
+AMPOutputWithTypeAndFormatter(double, .15lf);
+AMPOutputWithTypeAndFormatter(long, ld);
 
 void AMPMacrosTest(void) {
     AMPCallOutputMacroWithType(char, 'c');
@@ -46,7 +46,7 @@ void AMPBitwiseRepresentationTest(void) {
     structure.boolValue2 = 0;
     structure.boolValue3 = 0;
     
-    AMPBitwiseRepresentationPrintMemoryWithSize(&structure, sizeof(structure), AMPIsBigendian());
+    AMPBitwiseRepresentationPrintMemoryWithSize(&structure, sizeof(structure), AMPIsBigEndian());
 }
 
 void AMPHomeTaskTest(void) {

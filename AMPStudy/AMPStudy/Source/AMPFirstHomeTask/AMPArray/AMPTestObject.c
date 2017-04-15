@@ -15,10 +15,8 @@ struct AMPTestObject {
     
 };
 
-
 void *AMPTestObjectCreate(void) {
     AMPTestObject *object = calloc(1, sizeof(*object));
-    
     if (NULL != object) {
         object->referenceCount = 1;
     }
@@ -28,7 +26,8 @@ void *AMPTestObjectCreate(void) {
 
 void *AMPTestObjectRetain(void *object) {
     if (NULL != object) {
-        ((AMPTestObject *)object)->referenceCount++;
+        AMPTestObject *testObject = (AMPTestObject *)object;
+        testObject->referenceCount++;
     }
     
     return object;
@@ -36,7 +35,8 @@ void *AMPTestObjectRetain(void *object) {
 
 void AMPTestObjectRelease(void *object) {
     if (NULL != object) {
-        uint64_t referenceCount = --((AMPTestObject *)object)->referenceCount;
+        AMPTestObject *testObject = (AMPTestObject *)object;
+        uint64_t referenceCount = --testObject->referenceCount;
         if (0 == referenceCount) {
             free(object);
         }

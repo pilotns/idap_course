@@ -14,24 +14,19 @@
 #include "AMPTestObject.h"
 
 void AMPArrayTest(void) {
-
     AMPArray *array = AMPArrayCreateWithCapacity(10);
     AMPTestObject *object = AMPTestObjectCreate();
-    
     for (int iterator = 0; iterator < 20; iterator++) {
         AMPArrayAddObject(array, object);
     }
     
     for (int iterator = 0; iterator < 20; iterator++) {
         AMPTestObject *testObject = AMPArrayObjectAtIndex(array, iterator);
-        
         assert(object == testObject);
     }
     
     AMPArrayRemoveObject(array, object);
-    
     assert(0 == AMPArrayGetCount(array));
-
     AMPTestObjectRelease(object);
     AMPArrayRelease(array);
 }

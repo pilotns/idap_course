@@ -15,7 +15,7 @@
 
 #define AMPOutputWithTypeAndFormatter(type, formatter) \
     void AMPOutput_##type(type value) { \
-        printf(#formatter "\n", value); \
+        printf("%" #formatter "\n", value); \
     }
 
 #define AMPCallOutputMacroWithType(type, value) \
@@ -37,8 +37,5 @@
 
 
 #define AMPEmptyParameter
-
-static const uint16_t value = 1;
-#define AMPIsBigendian() (*(char *)&value == 1)
 
 #endif /* AMPMacros_h */

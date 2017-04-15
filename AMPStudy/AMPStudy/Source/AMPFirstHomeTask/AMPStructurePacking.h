@@ -15,25 +15,25 @@
 typedef struct AMPStructurePacking AMPStructurePacking;
 
 struct AMPStructurePacking {
-    char        *string;
-    double      doubleValue;
-    long long   longLongValue;
-    int         intValue;
-    float       floatValue;
-    short       shortValue1;
-    short       shortValue2;
-    short       shortValue3;
+    char *string;
+    double doubleValue;
+    long long longLongValue;
+    int intValue;
+    float floatValue;
+    short shortValue1;
+    short shortValue2;
+    short shortValue3;
     union {
         struct {
-            bool        boolValue1: 1;
-            bool        boolValue2: 1;
-            bool        boolValue3: 1;
-            bool        boolValue4: 1;
-            bool        boolValue5: 1;
-            bool        boolValue6: 1;
-        };
+            bool boolValue1: 1;
+            bool boolValue2: 1;
+            bool boolValue3: 1;
+            bool boolValue4: 1;
+            bool boolValue5: 1;
+            bool boolValue6: 1;
+        } bools;
         unsigned char bitfields;
-    };
+    } raw;
 };
 
 void AMPPrintMembersOffset(void);

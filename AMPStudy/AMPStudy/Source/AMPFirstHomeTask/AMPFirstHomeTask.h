@@ -12,10 +12,10 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-typedef bool (*AMPShouldPrintString)(int, int);
+typedef void (*AMPShouldPrintString)(int, int, const char *);
 
-bool AMPShouldPrintStringWithValueAndDivisor(int value, int divisor);
-void AMPPrintStringWithValueAndFunction(int value, bool (*shouldPrint)(int, int));
+void AMPShouldPrintStringWithValueAndDivisor(int value, int divisor, const char *string);
+void AMPPrintStringWithValueAndFunction(int value, AMPShouldPrintString shouldPrint);
 void AMPPrintStringWithIterationCount(int count);
 
 #endif /* AMPFirstHomeTask_h */

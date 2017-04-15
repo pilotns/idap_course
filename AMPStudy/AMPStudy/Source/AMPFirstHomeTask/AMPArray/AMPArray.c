@@ -14,8 +14,10 @@
 #include "AMPTestObject.h"
 #include "AMPMacros.h"
 
+static const uint64_t AMPNotFound = UINT64_MAX;
 static const uint64_t AMPArrayDefaultCapacity = 10;
 
+#pragma mark -
 #pragma mark - Private Declaration
 
 struct AMPArray {
@@ -34,18 +36,16 @@ void AMPArrayDecrementCount(AMPArray *array);
 uint64_t AMPArrayExpectedCapacity(AMPArray *array);
 uint64_t AMPArrayGetCapacity(AMPArray *array);
 
+#pragma mark -
 #pragma mark - Public Implementation
 
 AMPArray *AMPArrayCreateWithCapacity(uint64_t capacity) {
-
     AMPArray *array = calloc(1, sizeof(*array));
-    
     if (NULL == array) {
         return NULL;
     }
     
     array->referenceCount = 1;
-
     AMPArraySetCapacity(array, capacity);
     
     return array;
@@ -54,15 +54,12 @@ AMPArray *AMPArrayCreateWithCapacity(uint64_t capacity) {
 void AMPArrayAddObject(AMPArray *array, void *object) {
     if (NULL != object) {
         uint64_t currentCount = AMPArrayGetCount(array);
-        
         uint64_t newCapacity = AMPArrayExpectedCapacity(array);
-        
-        if (UINT64_MAX != newCapacity) {
+        if (AMPNotFound != newCapacity) {
             AMPArraySetCapacity(array, newCapacity);
         }
         
         array->storage[currentCount] = object;
-        
         AMPTestObjectRetain(object);
         AMPArrayIncrementCount(array);
     }
@@ -71,7 +68,6 @@ void AMPArrayAddObject(AMPArray *array, void *object) {
 void *AMPArrayObjectAtIndex(AMPArray *array, uint64_t index) {
     uint64_t currentCount = AMPArrayGetCount(array);
     void *result = NULL;
-    
     if (index < currentCount) {
         result = array->storage[index];
     }
@@ -80,24 +76,20 @@ void *AMPArrayObjectAtIndex(AMPArray *array, uint64_t index) {
 }
 
 void AMPArrayRemoveObject(AMPArray *array, void *object) {
-    uint64_t index = UINT64_MAX;
-    
-    while (UINT64_MAX != (index = AMPArrayIndexOfObject(array, object))) {
+    uint64_t index = AMPNotFound;
+    while (AMPNotFound != (index = AMPArrayIndexOfObject(array, object))) {
         AMPArrayRemoveObjectAtIndex(array, index);
     }
-
 }
 
 void AMPArrayRemoveAllObjects(AMPArray *array) {
-    do {
+    while(0 != AMPArrayGetCount(array)) {
         AMPArrayRemoveObjectAtIndex(array, 0);
-        
-    } while(0 != AMPArrayGetCount(array));
+    }
 }
 
 void AMPArrayRemoveObjectAtIndex(AMPArray *array, uint64_t index) {
     uint64_t currentCount = AMPArrayGetCount(array);
-    
     if (index < currentCount) {
         void **position = array->storage + index;
         void *object = *position;
@@ -114,30 +106,28 @@ void AMPArrayRemoveObjectAtIndex(AMPArray *array, uint64_t index) {
 
 uint64_t AMPArrayIndexOfObject(AMPArray *array, void *object) {
     if (NULL == object) {
-        return UINT64_MAX;
+        return AMPNotFound;
     }
     
     uint64_t currentCount = AMPArrayGetCount(array);
-    
-    if (0 != currentCount && UINT64_MAX != currentCount) {
+    if (0 != currentCount && AMPNotFound != currentCount) {
         for (int iterator = 0; iterator < currentCount; iterator++) {
             void *currentObject = AMPArrayObjectAtIndex(array, iterator);
-            
             if (currentObject == object) {
                 return iterator;
             }
         }
     }
     
-    return UINT64_MAX;
+    return AMPNotFound;
 }
 
 bool AMPArrayContainsObject(AMPArray *array, void *object) {
-    return NULL != array && UINT64_MAX != AMPArrayIndexOfObject(array, object);
+    return NULL != array && AMPNotFound != AMPArrayIndexOfObject(array, object);
 }
 
 uint64_t AMPArrayGetCount(AMPArray *array) {
-    return NULL != array ? array->count : UINT64_MAX;
+    return NULL != array ? array->count : AMPNotFound;
 }
 
 AMPArray *AMPArrayRetain(AMPArray *array) {
@@ -151,16 +141,17 @@ AMPArray *AMPArrayRetain(AMPArray *array) {
 void AMPArrayRelease(AMPArray *array) {
     if (NULL != array) {
         uint64_t referenceCount = --array->referenceCount;
-        
         if (0 == referenceCount) {
             AMPArraySetCapacity(array, 0);
         }
     }
 }
 
+#pragma mark - 
 #pragma mark - Private Implementation
 
 void AMPArrayDealloc(AMPArray *array) {
+    AMPArraySetCapacity(array, 0);
     free(array);
 }
 
@@ -174,20 +165,20 @@ void AMPArraySetCapacity(AMPArray *array, uint64_t capacity) {
     }
     
     void **storage = array->storage;
-    
-    array->capacity = capacity;
-    
     if (0 == capacity && NULL != storage) {
         AMPArrayRemoveAllObjects(array);
-        
-        free(storage);
-        AMPArrayDealloc(array);
-        
-    } else {
-        size_t size = capacity * sizeof(void *);
-        storage = realloc(storage, size);
-        array->storage = storage;
     }
+    
+    size_t size = capacity * sizeof(*storage);
+    storage = realloc(storage, size);
+    uint64_t currentCapacity = AMPArrayGetCapacity(array);
+    if (capacity > currentCapacity) {
+        uint64_t currentCount = AMPArrayGetCount(array);
+        memset(storage + currentCount, 0, (capacity - currentCapacity) * sizeof(*storage));
+    }
+    
+    array->capacity = capacity;
+    array->storage = storage;
 }
 
 void AMPArrayIncrementCount(AMPArray *array) {
@@ -203,15 +194,14 @@ void AMPArrayDecrementCount(AMPArray *array) {
 }
 
 uint64_t AMPArrayGetCapacity(AMPArray *array) {
-    return NULL != array ? array->capacity : UINT64_MAX;
+    return NULL != array ? array->capacity : AMPNotFound;
 }
 
 uint64_t AMPArrayExpectedCapacity(AMPArray *array) {
     uint64_t currentCapacity = AMPArrayGetCapacity(array);
     uint64_t currentCount = AMPArrayGetCount(array);
-    
-    if (UINT64_MAX == currentCount || UINT64_MAX == currentCapacity) {
-        return UINT64_MAX;
+    if (AMPNotFound == currentCount || AMPNotFound == currentCapacity) {
+        return AMPNotFound;
     }
     
     if (currentCount == currentCapacity) {
@@ -222,5 +212,5 @@ uint64_t AMPArrayExpectedCapacity(AMPArray *array) {
         return currentCapacity - AMPArrayDefaultCapacity;
     }
     
-    return UINT64_MAX;
+    return AMPNotFound;
 }
