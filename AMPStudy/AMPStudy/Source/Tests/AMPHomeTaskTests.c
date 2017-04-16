@@ -40,11 +40,11 @@ void AMPStructurePackingTest(void) {
 void AMPBitwiseRepresentationTest(void) {
     AMPStructurePacking structure = {0};
     
-    structure.bitfields = 255;
+    structure.raw.bitfields = 255;
     
-    structure.boolValue1 = 0;
-    structure.boolValue2 = 0;
-    structure.boolValue3 = 0;
+    structure.raw.bools.boolValue1 = 0;
+    structure.raw.bools.boolValue2 = 0;
+    structure.raw.bools.boolValue3 = 0;
     
     AMPBitwiseRepresentationPrintMemoryWithSize(&structure, sizeof(structure), AMPIsBigEndian());
 }

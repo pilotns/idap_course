@@ -21,7 +21,7 @@ void AMPPrintMembersOffset(void) {
     AMPPrintOffsetof(AMPStructurePacking, shortValue1);
     AMPPrintOffsetof(AMPStructurePacking, shortValue2);
     AMPPrintOffsetof(AMPStructurePacking, shortValue3);
-    AMPPrintOffsetof(AMPStructurePacking, bitfields);
+    AMPPrintOffsetof(AMPStructurePacking, raw.bitfields);
 }
 
 void AMPPrintSize() {
