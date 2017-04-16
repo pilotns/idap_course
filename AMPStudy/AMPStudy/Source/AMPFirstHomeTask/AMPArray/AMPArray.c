@@ -142,7 +142,7 @@ void AMPArrayRelease(AMPArray *array) {
     if (NULL != array) {
         uint64_t referenceCount = --array->referenceCount;
         if (0 == referenceCount) {
-            AMPArraySetCapacity(array, 0);
+            AMPArrayRelease(array);
         }
     }
 }
