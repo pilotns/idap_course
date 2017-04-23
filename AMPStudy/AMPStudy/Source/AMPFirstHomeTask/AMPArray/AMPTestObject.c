@@ -37,7 +37,7 @@ void AMPTestObjectRelease(void *object) {
     if (NULL != object) {
         AMPTestObject *testObject = (AMPTestObject *)object;
         uint64_t referenceCount = --testObject->referenceCount;
-        if (0 == referenceCount) {
+        if (!referenceCount) {
             free(object);
         }
     }
